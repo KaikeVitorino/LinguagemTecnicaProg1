@@ -1,0 +1,12 @@
+print("Hello Peeeeenis")
+L = [3,56,2,7,8,5]
+print(L)
+print(L[4])
+print(type(L))
+print(len(L))
+print(sum(L))
+print(min(L))
+print(max(L))
+L.append(88)
+print(L)
+print(L[0::2])
