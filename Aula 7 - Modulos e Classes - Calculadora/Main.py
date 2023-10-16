@@ -1,0 +1,3 @@
+from Calculadora import *
+
+calculadora()
