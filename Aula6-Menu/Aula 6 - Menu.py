@@ -2,25 +2,26 @@ def Menu(): # Func para mostrar o menu
 
     # Printa as opcoes
     print("\nEscolha umas das opcoes abaixo:\n"
-          "a) Criar uma lista de inteiros e inserir N elementos\n"
-          "b) Inverter a lista\n"
-          "c) Retornar o produto dos elementos da lista\n"
-          "d) Imprimir lista\n"
-          "e) Criar um dicionario de N alunos com as respectivas notas\n"
-          "f) Imprimir os alunos com suas notas\n"
-          "g) Alterar nota de um aluno do dicionario\n"
-          "h) <SAIR>\n")
+          "A) Criar uma lista de inteiros e inserir N elementos\n"
+          "B) Inverter a lista\n"
+          "C) Retornar o produto dos elementos da lista\n"
+          "D) Imprimir lista\n"
+          "E) Criar um dicionario de N alunos com as respectivas notas\n"
+          "F) Imprimir os alunos com suas notas\n"
+          "G) Alterar nota de um aluno do dicionario\n"
+          "H) Criar listas e printar numeros repetidos\n"
+          "I) <SAIR>\n")
 
     # Pergunta oq o usuario quer fazer
     escolha = input("Digite a opcao: ")
-    while escolha not in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']:
+    while escolha not in ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']:
         print("Opcao invalida. Tente novamente.\n")
         escolha = input("Digite a opcao: ")
     return escolha
 
 def criar_lista(N, i=0, lista=None): # Func para criar lista
     if lista is None:
-        lista = []
+        lista = ()
     while i < N:
         try:
             elemento = int(input(f"Digite o elemento {i+1} da lista: "))
@@ -43,7 +44,7 @@ def inverter_lista(lista): # Func para inverter a lista
         if escolha == 's':
             return  # Sai da função, não inverte a lista
 
-def produto_da_lista(lista): # Func para mostrar a multiplicacao da lista
+def prod_da_lista(lista): # Func para mostrar a multiplicacao da lista
     try:
         produto = 1
         for elemento in lista:
@@ -97,6 +98,29 @@ def alterar_nota_aluno(dic_alunos):
     except ValueError:
         print("Erro: Insira um número válido.")
 
+def criar_listas_encontrar_repetidos():
+    num_listas = int(input("Digite o número de listas que você deseja criar: "))
+    listas = []
+
+    for i in range(num_listas):
+        num_elementos = int(input("Digite o número de elementos para a lista {}: ".format(i+1)))
+        lista = []
+        for j in range(num_elementos):
+            elemento = int(input("Digite o elemento {} para a lista {}: ".format(j+1, i+1)))
+            lista.append(elemento)
+        listas.append(lista)
+
+    repetidos = set()
+    unicos = set()
+
+    for lista in listas:
+        for num in lista:
+            if num in unicos:
+                repetidos.add(num)
+            else:
+                unicos.add(num)
+
+    print("Os números repetidos nas listas são: ", list(repetidos))
 #===============================  Main para rodar tudo  ===============================#
 while True:
     escolha = Menu()  # Diz que a func Menu vai fornecer a escolha
@@ -142,5 +166,9 @@ while True:
         pass
 
     elif escolha == 'h':
+        criar_listas_encontrar_repetidos()
+        pass
+
+    elif escolha == 'I':
         print("Saindo do programa...")
         break
