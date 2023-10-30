@@ -5,7 +5,7 @@ L = [5, 4, 3, 2, 8, 7, 4,9]
 
 print(L[5:])
 
-#2. ORDENE A LISTA CRESCENTE E DECRESCENTE
+#2. ORDENE A Aula 1 - Basico CRESCENTE E DECRESCENTE
 # L.sort = Crescente // L.reverse = Decrescente
 
 L.sort(reverse=True)
