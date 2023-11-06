@@ -6,14 +6,15 @@ class Historico:
         self.transacoes = []
 
     def imprime(self):
-        print(f"Data de abertura: ".format(self.data_abertura))
-        print("Transacoes: ")
-        for t in self.transacoes:
-            print("-", t)
+        f = open('historico', 'r')
+        print('========| Historico de movimentacao |========')
+        l = f.read()
+        print(f"\n", l)
 
     def gravaHistorico(self):
-        arq = open('historico.txt', 'a')
-        arq.write()
+        arq = open('historico', 'a')
+        historico_str = '\n'.join(self.transacoes)  # Une todas as strings da lista com quebras de linha
+        arq.write(historico_str)
 
 
 class Cliente:
@@ -41,25 +42,39 @@ class Conta(Cliente):
         self.saldo = saldo
         self.historico = Historico()  # Crie uma instância de Historico
 
-    def deposita(self, valor):
+    def deposita(self, valor, nome):
         self.saldo += valor
-        self.historico.transacoes.append(str(f"Depósito de {valor}. Saldo: {self.saldo}."))
+        self.historico.transacoes.append(str(f"\nConta do cliente, {nome}"
+                                         f"\nDeposito de {valor}. "
+                                         f"\nSaldo: {self.saldo}. "
+                                         f"\nHorario: {datetime.datetime.today()}"
+                                         f"\n|====================================================|"))
+        self.historico.gravaHistorico()
 
-    def saca(self, valor):
+    def saca(self, valor, nome):
         if self.saldo >= valor:
             self.saldo -= valor
-            self.historico.transacoes.append(str(f"Retirada de {valor}. Saldo: {self.saldo}."))
+            self.historico.transacoes.append(str(f"\nConta do cliente, {nome}"
+                                             f"\nRetirada de {valor}. "
+                                             f"\nSaldo: {self.saldo}. "
+                                             f"\nHorario: {datetime.datetime.today()}"
+                                             f"\n|====================================================|"))
+            self.historico.gravaHistorico()
         else:
             print("Saldo insuficiente.")
 
-    def transferencia_para(self, valor, destino):
+    def transferencia_para(self, valor, destino,nome):
         if self.saldo >= valor:
             self.saldo -= valor
             destino.deposita(valor)
-            self.historico.transacoes.append(str(f"Transferência de {valor} para conta {destino.n_conta}. Saldo: {self.saldo}."))
+            self.historico.transacoes.append(str(f"\nConta do cliente, {nome}"
+                                                 f"\nTransferência de {valor} para conta {destino.n_conta}. "
+                                                 f"\nSaldo: {self.saldo}. "
+                                                 f"\nHorario: {datetime.datetime.today()}"
+                                                 f"\n|====================================================|"))
+            self.historico.gravaHistorico()
         else:
             print("Saldo insuficiente para a transferência.")
-
 
     def gravar_conta(self, nome, cpf):
         arq_cli = open('Contas', 'a')

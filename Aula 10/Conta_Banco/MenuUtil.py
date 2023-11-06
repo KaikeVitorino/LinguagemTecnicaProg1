@@ -27,7 +27,7 @@ def main():
     #Declarando variaveis essenciais
     nome = None
     cpf = None
-    saldo = None
+    saldo = float()
     n_conta = random.randint(0, 100000000)
 
     cliente = Cliente(nome, cpf)
@@ -40,7 +40,7 @@ def main():
         if escolha == 'a':
             nome = input("Nome do cliente: ")
             cpf = input("CPF do cliente: ")
-            saldo = input("Saldo disponivel na conta do cliente: ")
+            saldo = float(input("Saldo disponivel na conta do cliente: "))
             print(f"Numero da conta do cliente: {n_conta} \n")
 
             cliente = Cliente(nome, cpf)
@@ -56,18 +56,20 @@ def main():
             conta.ler_arq_conta()
 
         elif escolha == 'd':
-            valor = input("Valor a ser depositado: ")
-            conta.deposita(valor)
+            valor = float(input("Valor a ser depositado: \n"))
+            conta.deposita(valor, nome)
 
         elif escolha == 'e':
-            valor = input("Valor a ser sacado: ")
-            conta.saca(valor)
+            valor = float(input("Valor a ser sacado: \n"))
+            conta.saca(valor, nome)
 
         elif escolha == 'f':
-            destino = input("Pessoa destino da transferencia: ")
-            valor = input("Valor a ser transferido: ")
+            print("Escolha a pessoa para quem eh destinada a transferencia.")
+            cliente.ler_arq_cli()
+            destino = input("Digite o nome do destinatario da transferencia: ")
+            valor = float(input("Valor a ser transferido: "))
 
-            conta.transferencia_para(valor, destino)
+            conta.transferencia_para(valor, destino, nome)
 
         elif escolha == 'g':
             historico.imprime()
