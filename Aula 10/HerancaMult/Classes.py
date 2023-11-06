@@ -1,5 +1,10 @@
 '''
     Exemplo heranca multipla
+      ISSO NAO TA FUNCIONANDO!!!!
+      ISSO NAO TA FUNCIONANDO!!!!
+      ISSO NAO TA FUNCIONANDO!!!!
+      ISSO NAO TA FUNCIONANDO!!!!
+      ISSO NAO TA FUNCIONANDO!!!!
 '''
 
 class Pessoa(object):
