@@ -38,7 +38,7 @@ class Filha(Pai, Mãe):
 
   def __init__(self, idade, nome, profissão, filhos, hobbies):
     super().__init__(idade, nome, profissão)
-    self.filhos = filhos
+    self.filha = filhos
     self.hobbies = hobbies
 
   def se_divertir(self):
